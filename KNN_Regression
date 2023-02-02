@@ -1,0 +1,45 @@
+import numpy as np
+from sklearn.neighbors import KNeighborsClassifier
+
+# training data
+X = np.array([[1.6, 51], [1.7, 62], [1.85, 69], [1.42, 64], [1.3, 65], [2.1, 56], [1.4, 58], [1.65, 57], [1.9, 55]])
+y = np.array(["Small", "Large", "Large", "Small", "Large", "Large", "Small", "Large", "Large"])
+
+# test data
+test_data = np.array([[1.5, 60]])
+
+# Create k-NN classifier with k=7
+knn = KNeighborsClassifier(n_neighbors=7, algorithm="brute")
+
+# Fit the classifier to the training data
+knn.fit(X, y)
+
+# Get the distances between the test data and the training data
+distances, indices = knn.kneighbors(test_data)
+
+print("Distances between test data and training data:")
+for i in range(len(indices[0])):
+    index = indices[0][i]
+    distance = distances[0][i]
+    print("Distance to data point {}: {:.2f}".format(index, distance))
+
+//knn_code
+import numpy as np
+from sklearn.neighbors import KNeighborsClassifier
+
+# training data
+X = np.array([[1.6, 51], [1.7, 62], [1.85, 69], [1.42, 64], [1.3, 65], [2.1, 56], [1.4, 58], [1.65, 57], [1.9, 55]])
+y = np.array(["Small", "Large", "Large", "Small", "Large", "Large", "Small", "Large", "Large"])
+
+# test data
+test_data = np.array([[1.5, 60]])
+
+# Create k-NN classifier with k=7
+knn = KNeighborsClassifier(n_neighbors=7)
+
+# Fit the classifier to the training data
+knn.fit(X, y)
+
+# Predict the T-Shirt size of the new customer
+prediction = knn.predict(test_data)
+print("T-Shirt size:", prediction[0])
