@@ -43,4 +43,4 @@ knn.fit(X, y)
 # Predict the T-Shirt size of the new customer
 prediction = knn.predict(test_data)
 print("T-Shirt size:", prediction[0])
-;
+
